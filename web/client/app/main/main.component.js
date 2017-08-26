@@ -13,6 +13,14 @@ export class MainController {
     this.$http = $http;
     this.socket = socket;
 
+
+    var circle = d3.selectAll("circle");
+    circle.style("fill", "#EC407A");
+    circle.attr('r', function() { return Math.random() * 30 })
+
+
+
+
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
@@ -27,7 +35,7 @@ export class MainController {
   }
 
   addThing() {
-    if(this.newThing) {
+    if (this.newThing) {
       this.$http.post('/api/things', {
         name: this.newThing
       });
